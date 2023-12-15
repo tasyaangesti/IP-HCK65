@@ -27,6 +27,7 @@ app.get("/feedback", authentication, Controller.getFeedback)
 app.post("/add-feedback", authentication, Controller.postFeedback)
 app.post("/transaction-midtrans/:id", authentication, Controller.buyRecipe)
 app.delete("/feedback/delete/:id", authentication, Controller.deleteFeedback)
+app.get("/feedback/edit/:id", Controller.getFeedbackById)
 app.put("/feedback/edit/:id", Controller.editReview)
 
 
