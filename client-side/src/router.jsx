@@ -53,7 +53,7 @@ export const router = createBrowserRouter([
         element: < AllFeedback />,
       },
       {
-        path: "/recipe/feedback/edit/",
+        path: "/recipe/feedback/edit/:id",
         element: < EditReviewRecipe />,
       }
     ],

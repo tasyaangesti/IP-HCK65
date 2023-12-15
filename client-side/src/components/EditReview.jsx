@@ -5,16 +5,16 @@ import { useNavigate, useParams } from "react-router-dom";
 export function EditReviewRecipe() {
   const navigate = useNavigate();
   const { id } = useParams();
-  console.log(id, "edit fb");
-
+  
   const [formEdit, setformEdit] = useState({
     review: "",
     nama: "",
   });
-
+  
   const editFeedback = async (e) => {
     try {
       e.preventDefault();
+      console.log(id, "edit fb");
 
       console.log("masuk edit");
       console.log(formEdit, "ini di edit fb");
