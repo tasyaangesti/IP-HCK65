@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 export function EditReviewRecipe() {
   const navigate = useNavigate();
   const { id } = useParams();
+  console.log(id, "edit fb");
 
   const [formEdit, setformEdit] = useState({
     review: "",
@@ -15,7 +16,7 @@ export function EditReviewRecipe() {
     try {
       e.preventDefault();
 
-      console.log("masuk");
+      console.log("masuk edit");
       console.log(formEdit, "ini di edit fb");
       const response = await axios.put(
         `http://localhost:3001/feedback/edit/${id}`,
@@ -43,7 +44,7 @@ export function EditReviewRecipe() {
         },
       });
       console.log(response, ">> res from edit");
-  
+
       setformEdit({
         review: response.data.review,
         nama: response.data.nama,
@@ -52,7 +53,7 @@ export function EditReviewRecipe() {
       console.log(error);
     }
   };
-  
+
   const handleEdit = (e) => {
     const { value, name } = e.target;
     setformEdit({
@@ -62,8 +63,8 @@ export function EditReviewRecipe() {
   };
 
   useEffect(() => {
-    getFeedback(id)
-  }, [id])
+    getFeedback();
+  }, [id]);
 
   return (
     <>

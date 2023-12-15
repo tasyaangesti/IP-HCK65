@@ -191,20 +191,21 @@ class Controller {
     }
   }
 
-  static async getFeedbackById (req, res) {
+  static async getFeedbackById(req, res) {
     try {
-      const feedback = await Feedback.findByPk(req.params.id)
+      const feedback = await Feedback.findByPk(req.params.id);
+  
       if (!feedback) {
-        throw { message: "Not Found" };
+        return res.status(404).json({ message: "Not Found" });
       }
-      res.status(200).json(feedback);
-
+  
+      return res.status(200).json(feedback);
     } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: " Internal Server Error" });
-
+      console.error(error);
+      return res.status(500).json({ message: "Internal Server Error" });
     }
   }
+  
 
   static async deleteFeedback(req, res) {
     try {
