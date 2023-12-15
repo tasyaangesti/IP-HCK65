@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Footer } from "./Footer";
 
 export function Popular() {
   const [popularCard, setPopularCard] = useState([]);
@@ -108,6 +109,7 @@ export function Popular() {
         </div>
       </div>
       ;
+      < Footer/>
     </>
   );
 }

@@ -19,6 +19,40 @@
     "instruction": "In a large pot add some water the frozen beans and frozen pearl onions. Cover and cook over medium heat until they are tender. Drain and set aside.In a large skillet over medium high heat melt 1 tablespoon of butter and the olive oil.",
     "ingredients": "pearl onion, beans, water, olive oil, butter, pearl onion, green beans, chicken stock, stock, salmon, cream, crust, powdered sugar, vanilla, milk, spread",
     "CategoryId" : 2
-
+  },
+  {
+    "title": "Caldo Verde - Portuguese Kale Soup",
+    "image": "https://spoonacular.com/recipeImages/636787-556x370.jpg",
+    "instruction": "Chop your onions, slice your carrots and smash your garlic. Set aside. Peel and chop the potatoes. Set aside in a bowl of cold water. Remove the casing from your chorizo. This is an important step. Chorizo casing is tough and unforgiving .",
+    "ingredients": "carrot, garlic, onion, potato, chorizo, sausage, kale, roll, kale, olive oil, red pepper flakes, vegetable, potato, broth",
+    "CategoryId" : 2
+  },
+  {
+    "title": "Tropical Ice Pops",
+    "image": "https://spoonacular.com/recipeImages/663858-556x370.jpg",
+    "instruction": "Pure the mango, pineapple, 3/4 cup coconut beverage and 1 1/2 tablespoon maple syrup in a blender. Pour equal amounts of the mixture into each mould. In a small bowl, mix the coconut milk, 1/4 cup of coconut beverage, and 2-3 TBS of maple syrup.",
+    "ingredients": "mapple syrup, pineapple, water, coonut, mango, coconut milk, ice",
+    "CategoryId" : 2
+  },
+  {
+    "title": "Brownie Cheesecake",
+    "image": "https://spoonacular.com/recipeImages/636325-556x370.jpg",
+    "instruction": "Mix the crumbs, sugar & butter together in a large mixing bowl, until the crumbs clump together when gathered in your fist Pat the crumbs in an even layer in the bottom of an 8x3 inch springform pan Place the pan in a 325 degree oven & bake for 10 minutes",
+    "ingredients": "butter, sugar, crust, flour, cream cheese, vanilla, salt, cream cheese, egg, water",
+    "CategoryId" : 1
+  },
+  {
+    "title": "Glazed pork chops",
+    "image": "https://spoonacular.com/recipeImages/644761-556x370.jpg",
+    "instruction": "Press one side of each chop into the black pepper. Heat nonstick grill skillet until hot. Add pork chops, pepper side down, and cook about 4 minutes or until browned. Reduce heat to medium, turn pork chops and cook 6-8 minutes longer. ",
+    "ingredients": "black pepper, balsamic vinegar, corn starch, pork chops, soy sauce, pepper, honey, cracked pepper, fresh chives, green onions, butter, garlic",
+    "CategoryId" : 2
+  },
+  {
+    "title": "Arame Edamame Cucumber Salad",
+    "image": "https://spoonacular.com/recipeImages/632693-556x370.jpg",
+    "instruction": "Add 2 cups of water to arame, leave it soaking for 5 min and after that time drain.Boil edamame in salted water for roughly 5 min.Slice cucumber finely, the best way is to use mandolin.In a small jar combine all the dressing ingredients, cover and shake.",
+    "ingredients": "cucumber, edamame, shake, water",
+    "CategoryId" : 2
   }
 ]
