@@ -105,7 +105,7 @@ export function Popular() {
                       if (recipe.status === "unavailable") {
                         payment(recipe.id);
                       } else{
-                        navigate(`/recipe/${id}`)
+                        navigate(`/recipe/${recipe.id}`)
                       }
                     }}
                   >

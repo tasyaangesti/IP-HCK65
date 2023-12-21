@@ -73,6 +73,34 @@ _Response (200 - Success Login)_
      "access_token": "<your access token>"
 }
 ```
+
+### POST /google-login
+
+> login via google
+
+_Request Header_
+
+```
+{
+  "accessToken": "Bearer <your access token>"
+}
+```
+
+_Request Body_
+
+```
+no needed
+
+```
+
+_Response (200 - Success Login)_
+
+```
+{
+     "access_token": "<your access token>"
+}
+```
+
 ### GET /recipe
 
 > Get all recipe data from database
@@ -198,6 +226,7 @@ _Response (500 - Bad Request)_
 }
 
 ```
+
 ### GET /recipe/:id
 
 > Get recipe data by id
@@ -251,6 +280,350 @@ _Response (500 - Unauthorized)_
 ```
 {
   "message": " Internal server error"
+}
+
+```
+
+### GET /feedback
+
+> Get all feedback data from database
+
+_Request Header_
+
+```
+
+{
+"access_token": string
+}
+
+```
+
+_Request Body_
+
+```
+
+not needed
+
+```
+
+_Response (200 - OK)_
+
+```
+[
+    {
+        "id": 1,
+        "review": "lumayan worth it untuk di beli, kurang lengkapp huhu",
+        "nama": "Serena Woods",
+        "UserId": 1,
+        "createdAt": "2023-12-20T15:23:02.841Z",
+        "updatedAt": "2023-12-20T15:23:02.841Z"
+    }
+]
+```
+
+_Response (500 - Bad Request)_
+
+```
+{
+"message": "Internal server error"
+}
+
+```
+
+### POST /add-feedback
+
+> create feedback for buying recipe
+
+_Request Header_
+
+```
+
+{
+"access_token": string
+}
+
+```
+
+_Request Body_
+
+```
+
+{
+  "name": string,
+  "review": string,
+  "UserId": integer
+}
+
+```
+
+_Response (201 - CREATE)_
+
+```
+[
+    {
+        "id": 1,
+        "review": "lumayan worth it untuk di beli, kurang lengkapp huhu",
+        "nama": "Serena Woods",
+        "UserId": 1,
+        "createdAt": "2023-12-20T15:23:02.841Z",
+        "updatedAt": "2023-12-20T15:23:02.841Z"
+    }
+]
+```
+
+_Response (500 - Bad Request)_
+
+```
+{
+"message": "Internal server error"
+}
+
+```
+
+
+
+### POST /transaction-midtrans/:id
+
+> create transaction for buying recipe
+
+_Request Header_
+
+```
+
+{
+"access_token": string
+}
+
+```
+
+_Request Body_
+
+```
+
+no needed
+
+```
+
+_Response (201 - CREATE)_
+
+```
+{
+    "token": "21daadde-32a6-40fd-b19a-7becbf5c2501",
+    "redirect_url": "https://app.sandbox.midtrans.com/snap/v3/redirection/21daadde-32a6-40fd-b19a-7becbf5c2501"
+}
+```
+
+_Response (500 - Bad Request)_
+
+```
+{
+"message": "Internal server error"
+}
+
+```
+
+### DELETE /feedback/delete/:id
+
+> remove feedback data by id
+
+_Request Header_
+
+```
+
+{
+"access_token": string
+}
+
+```
+
+_Request Body_
+
+```
+
+not needed
+
+```
+
+_Response (200 - OK)_
+
+```
+
+{
+   "message": "<entity name> success to delete"
+}
+
+```
+_Response (500 - Internal Server Error)_
+
+```
+{
+  "message": "Internal Server Error"
+}
+
+```
+
+### GET /feedback/edit/:id"
+
+> Get deefback for edit data by id
+
+_Request Header_
+
+```
+
+{
+"access_token": string
+}
+
+```
+
+_Request Body_
+
+```
+
+not needed
+
+```
+
+_Response (200 - OK)_
+
+```
+{
+    "id": 1,
+    "review": "lumayan worth it untuk di beli, kurang lengkapp huhu",
+    "nama": "Serena Woods",
+    "UserId": 1,
+    "createdAt": "2023-12-20T15:23:02.841Z",
+    "updatedAt": "2023-12-20T15:23:02.841Z"
+}
+```
+
+_Response (404 - Not Found)_
+
+```
+
+{
+    "message": "Not Found"
+}
+
+```
+
+_Response (500 - Unauthorized)_
+
+```
+{
+  "message": " Internal server error"
+}
+
+```
+
+
+### PUT /feedback/edit/:id
+
+> Update / edit feedback data by id
+
+_Request Header_
+
+```
+
+{
+"access_token": string
+}
+
+```
+
+_Request Body_
+
+```
+
+{
+    "review": string,
+    "nama": string,
+    "UserId": integer
+}
+
+```
+
+_Response (200 - OK)_
+
+```
+
+[
+    {
+        "id": 1,
+        "review": "lumayan worth it untuk di beli, kurang lengkapp huhu",
+        "nama": "Serena Woods",
+        "UserId": 1,
+        "createdAt": "2023-12-20T15:23:02.841Z",
+        "updatedAt": "2023-12-20T15:23:02.841Z"
+    }
+]
+
+```
+
+_Response (404 - Not Found)_
+
+```
+
+{
+    "message": "not found"
+}
+
+```
+
+_Response (400 - Bad Request)_
+
+```
+{
+  "message": "SequelizeValidationError":
+"
+}
+
+```
+_Response (500 - Internal Server Error)_
+
+```
+{
+  "message": "Internal Server Error"
+}
+
+```
+
+### PUT /recipe-status/edit/:id
+
+> Update / edit recipe status after buying recipe
+
+_Request Header_
+
+```
+
+{
+"access_token": string
+}
+
+```
+
+_Request Body_
+
+```
+
+no needed
+
+```
+
+_Response (200 - OK)_
+
+```
+
+{
+    "message": "status has been updated"
+}
+
+```
+_Response (500 - Internal Server Error)_
+
+```
+{
+  "message": "Internal Server Error"
 }
 
 ```
