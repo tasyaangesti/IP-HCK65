@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -36,6 +36,39 @@ export function Login() {
     });
   };
 
+  async function handleCredentialResponse(response) {
+    console.log("Encoded JWT ID token: " + response.credential);
+    try {
+      const { data } = await axios.post(
+        "http://localhost:3001/google-login",
+        null,
+        {
+          headers: {
+            google_token: response.credential,
+          },
+        }
+      );
+      // console.log(data, "data login google");
+      localStorage.setItem("access_token", data.access_token);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    google.accounts.id.initialize({
+      client_id:
+        "573131278381-ffjs0hfcujesqbmf9rcvtqgua5brlsf2.apps.googleusercontent.com",
+      callback: handleCredentialResponse,
+    });
+    google.accounts.id.renderButton(
+      document.getElementById("buttonDiv"),
+      { theme: "outline", size: "large" } // customization attributes
+    );
+    // google.accounts.id.prompt(); // also display the One Tap dialog
+  }, []);
+
   return (
     <>
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
@@ -65,7 +98,6 @@ export function Login() {
                   className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                   placeholder="Enter email"
                 />
-
               </div>
             </div>
             <div>
@@ -82,7 +114,6 @@ export function Login() {
                   className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                   placeholder="Enter password"
                 />
-
               </div>
             </div>
             <button
@@ -91,9 +122,19 @@ export function Login() {
             >
               Sign in
             </button>
+            <div id="buttonDiv"></div>
+            <div
+              className="g_id_signin"
+              data-type="standard"
+              data-size="large"
+              data-theme="outline"
+              data-text="sign_in_with"
+              data-shape="rectangular"
+              data-logo_alignment="left"
+            ></div>
             <p className="text-center text-sm text-gray-500">
               don't have an account?
-              <Link className="underline" to="/register" >
+              <Link className="underline" to="/register">
                 Register
               </Link>
             </p>

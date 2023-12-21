@@ -4,6 +4,8 @@ const { User, Recipe, Feedback } = require("../models");
 // const axios = require("axios");
 const midtransClient = require("midtrans-client");
 const SERVER_MIDTRANS = process.env.SERVER_MIDTRANS;
+const { OAuth2Client } = require("google-auth-library");
+const client = new OAuth2Client();
 
 class Controller {
   static async Register(req, res) {
@@ -76,6 +78,7 @@ class Controller {
   static async findRecipe(req, res) {
     try {
       const recipes = await Recipe.findAll();
+      console.log(recipes, ">>rec");
 
       res.status(200).json(recipes);
     } catch (error) {
@@ -191,21 +194,44 @@ class Controller {
     }
   }
 
+  static async putStatus(req, res) {
+    try {
+      let findStatus = await Recipe.findByPk(req.params.id);
+      if (!findStatus) {
+        throw {
+          name: "Not Found",
+        };
+      }
+
+      await Recipe.update(
+        { status: "available" },
+        { where: { id: req.params.id } }
+      );
+      res.status(200).json({
+        message: `status has been updated`,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        message: "internal server error",
+      });
+    }
+  }
+
   static async getFeedbackById(req, res) {
     try {
       const feedback = await Feedback.findByPk(req.params.id);
-  
+
       if (!feedback) {
         return res.status(404).json({ message: "Not Found" });
       }
-  
+
       return res.status(200).json(feedback);
     } catch (error) {
       console.error(error);
       return res.status(500).json({ message: "Internal Server Error" });
     }
   }
-  
 
   static async deleteFeedback(req, res) {
     try {
@@ -216,6 +242,38 @@ class Controller {
     } catch (error) {
       console.log(error);
       res.status(500).json({ message: " Internal Server Error" });
+    }
+  }
+
+  static async loginGoogle(req, res) {
+    try {
+      console.log(req.headers.google_token, "google server");
+      const ticket = await client.verifyIdToken({
+        idToken: req.headers.google_token,
+        audience: process.env.google_client,
+      });
+
+      const payload = ticket.getPayload();
+      console.log(payload, "ini payload google");
+
+      const findUser = await User.findOne({ where: { email: payload.email } });
+      if (!findUser) {
+        const user = await User.create({
+          email: payload.email,
+          fullName: payload.name,
+          password: String(Math.random()),
+        });
+      }
+
+      console.log(findUser, "ini user di goole login");
+      const access_token = signToken({ id: findUser.id });
+
+      res.status(200).json({ access_token });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        message: "internal server error",
+      });
     }
   }
 }

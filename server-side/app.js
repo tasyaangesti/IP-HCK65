@@ -18,6 +18,7 @@ app.use(cors());
 
 //endpoints
 app.post("/login", Controller.Login)
+app.post("/google-login", Controller.loginGoogle)
 app.post("/register", Controller.Register)
 
 app.use(authentication)
@@ -29,6 +30,8 @@ app.post("/transaction-midtrans/:id", authentication, Controller.buyRecipe)
 app.delete("/feedback/delete/:id", authentication, Controller.deleteFeedback)
 app.get("/feedback/edit/:id", Controller.getFeedbackById)
 app.put("/feedback/edit/:id", Controller.editReview)
+app.put("/recipe-status/edit/:id", Controller.putStatus)
+
 
 
 

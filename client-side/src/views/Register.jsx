@@ -22,7 +22,6 @@ export function Register() {
         formRegister
       );
 
-      localStorage.setItem("access_token", data.access_token);
       navigate("/login");
     } catch (error) {
       console.log(error);

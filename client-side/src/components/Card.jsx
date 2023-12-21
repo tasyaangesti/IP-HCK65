@@ -23,7 +23,7 @@ export function Popular() {
         },
       });
 
-      console.log(response.data, ">> response dari card");
+      // console.log(response.data, ">> response dari card");
       setPopularCard(response.data);
     } catch (error) {
       console.log(error, "error di card");
@@ -38,11 +38,12 @@ export function Popular() {
 
   const payment = async (id) => {
     try {
+      console.log("masuk payment", id);
       const { data } = await axios({
         method: "POST",
         url: `http://localhost:3001/transaction-midtrans/${id}`,
         headers: {
-          access_token: localStorage.access_token,
+          authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       });
 
@@ -54,8 +55,7 @@ export function Popular() {
     } catch (error) {
       console.log(error);
 
-      // Gunakan Swal atau cara pemberitahuan lainnya sesuai kebutuhan Anda
-      alert(error.response.data.message);
+      // alert(error.response.data.message);
     }
   };
 
@@ -63,9 +63,9 @@ export function Popular() {
     try {
       await axios({
         method: "put",
-        url: `${base_url}/recipe/${id}`,
+        url: `/recipe-status/edit/${id}`,
         headers: {
-          access_token: localStorage.access_token,
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       });
       navigate(`/recipe/${id}`);
@@ -99,8 +99,17 @@ export function Popular() {
                   {recipe.title}
                 </h2>
                 <div className="card-actions flex justify-between items-center">
-                  <button className="btn btn-primary">
-                    <Link to={`/recipe/${recipe.id}`}>Buy Recipe Now</Link>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => {
+                      if (recipe.status === "unavailable") {
+                        payment(recipe.id);
+                      } else{
+                        navigate(`/recipe/${id}`)
+                      }
+                    }}
+                  >
+                   {recipe.status === "unavailable"?`${recipe.status} - Buy Recipe Now`: 'view detail'} 
                   </button>
                 </div>
               </div>
@@ -109,7 +118,7 @@ export function Popular() {
         </div>
       </div>
       ;
-      < Footer/>
+      <Footer />
     </>
   );
 }
