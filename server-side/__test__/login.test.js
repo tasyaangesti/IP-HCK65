@@ -94,15 +94,14 @@ describe("POST /login", () => {
       };
       const response = await request(app).post("/login").send(user);
       expect(response.status).toBe(401);
-      expect(response.body).toHaveProperty(
-        "message",
-        "Email / password is required"
-      );
+      expect(response.body).toHaveProperty("message", "Invalid email/password");
     } catch (error) {
       console.log(error);
       throw error;
     }
   });
+  
+  
 
   test("Login berhasil", async () => {
     try {
