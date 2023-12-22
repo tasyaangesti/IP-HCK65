@@ -24,7 +24,7 @@ export function Popular() {
       console.log("masuk payment", id);
       const { data } = await axios({
         method: "POST",
-        url: `http://localhost:3001/transaction-midtrans/${id}`,
+        url: `https://apis.tha-main.tech/transaction-midtrans/${id}`,
         headers: {
           authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },

@@ -17,7 +17,7 @@ export function Login() {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:3001/login",
+        "https://apis.tha-main.tech/login",
         formLogin,
         {}
       );
@@ -40,7 +40,7 @@ export function Login() {
     console.log("Encoded JWT ID token: " + response.credential);
     try {
       const { data } = await axios.post(
-        "http://localhost:3001/google-login",
+        "https://apis.tha-main.tech/google-login",
         null,
         {
           headers: {

@@ -9,7 +9,7 @@ function DetailRecipe() {
 
   const recipes = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/recipe/${id}`, {
+      const response = await axios.get(`https://apis.tha-main.tech/recipe/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },

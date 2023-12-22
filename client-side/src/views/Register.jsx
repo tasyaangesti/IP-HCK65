@@ -18,7 +18,7 @@ export function Register() {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:3001/register",
+        "https://apis.tha-main.tech/register",
         formRegister
       );
 

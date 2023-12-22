@@ -9,7 +9,7 @@ export function AllFeedback() {
 
   const getAllFeedback = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/feedback", {
+      const response = await axios.get("https://apis.tha-main.tech/feedback", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
@@ -23,7 +23,7 @@ export function AllFeedback() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3001/feedback/delete/${id}`, {
+      await axios.delete(`https://apis.tha-main.tech/feedback/delete/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },

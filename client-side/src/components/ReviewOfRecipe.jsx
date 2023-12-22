@@ -16,7 +16,7 @@ export function ReviewRecipe() {
     event.preventDefault()
     try {
       const { data } = await axios.post(
-        "http://localhost:3001/add-feedback",
+        "https://apis.tha-main.tech/add-feedback",
         postFeedback,
         {headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,

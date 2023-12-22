@@ -11,7 +11,7 @@ export const getPopular = () => {
       }
       console.log('aaaa')
 
-      const response = await axios.get("http://localhost:3001/recipe", {
+      const response = await axios.get("https://apis.tha-main.tech/recipe", {
         headers: {
           Authorization: `Bearer ${access_token}`,
         },

@@ -19,7 +19,7 @@ export function EditReviewRecipe() {
       console.log("masuk edit");
       console.log(formEdit, "ini di edit fb");
       const response = await axios.put(
-        `http://localhost:3001/feedback/edit/${id}`,
+        `https://apis.tha-main.tech/feedback/edit/${id}`,
         formEdit,
         {
           headers: {
@@ -38,7 +38,7 @@ export function EditReviewRecipe() {
 
   const getFeedback = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/feedback/edit/${id}`, {
+      const response = await axios.get(`https://apis.tha-main.tech/feedback/edit/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },

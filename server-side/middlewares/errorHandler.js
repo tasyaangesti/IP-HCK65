@@ -1,11 +1,24 @@
-function errorHandler(error, req, res, next) {
+module.exports = (error, request, response, next) => {
+  console.log(error);
   let status = error.status || 500;
   let message = error.message || "Internal Server Error";
 
-  switch (key) {
+  switch (error.name) {
+    case "Invalid Token":
     case "JsonWebTokenError":
       status = 401;
       message = "Invalid Token";
+      break;
+
+    case "Forbidden":
+      status = 403;
+      message = "Forbidden";
+      break;
+
+    case "SequelizeValidationError":
+    case "SequelizeUniqueConstraintError":
+      status = 400;
+      message = error.errors[0].message || "Validation error";
       break;
 
     case "Not Found":
@@ -13,32 +26,25 @@ function errorHandler(error, req, res, next) {
       message = "Not Found";
       break;
 
-    case "SequelizeValidationError":
-      status = 400;
-      message = error.errors[0].message;
-      break;
-
     case "BadRequest":
-      status = 400;
-      message = "Bad Request";
+    case "Unauthorized":
+      status = 401;
+      message = "Unauthorized";
       break;
 
     case "Invalid email/password":
-      status = 400;
-      message = "Invalid email/password";
-      break;
-
+    case "Password is required":
     case "Email is required":
       status = 400;
-      message = "Email is required";
+      message = "Invalid email/password" || error.message || "u";
       break;
 
-    case "Password is required":
+    case "Email already exists":
       status = 400;
-      message = "Password is required";
-      break;
-
-    default:
+      message = "Email already exists";
       break;
   }
-}
+  response.status(status).json({
+    message,
+  });
+};
