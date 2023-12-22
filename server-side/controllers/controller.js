@@ -7,6 +7,7 @@ const SERVER_MIDTRANS = process.env.SERVER_MIDTRANS;
 const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client();
 
+
 class Controller {
   static async Register(req, res, next) {
     try {

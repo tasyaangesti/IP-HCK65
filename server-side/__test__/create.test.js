@@ -23,7 +23,7 @@ beforeAll(async () => {
 
 afterAll(async () => {
   try {
-    await queryInterface.bulkDelete("Receipe", null, {
+    await queryInterface.bulkDelete("Feedback", null, {
       truncate: true,
       cascade: true,
       restartIdentity: true,
@@ -34,32 +34,25 @@ afterAll(async () => {
   }
 });
 
-describe("POST /recipe", () => {
+describe("POST /add-feedback", () => {
   test("Berhasil membuat entitas utama", async () => {
     try {
       const data = {
-        title: "Fall Classic: Carrot Cake",
-        image: "https://spoonacular.com/recipeImages/642551-556x370.jpg",
-        ingredients:
-          "cooking oil, baking powder, baking soda, cinnamon, all purpose flour, carrot, salt, egg, cream cheese, butter, cream, icing, powdered sugar, vanilla, milk, spread",
-        instruction:
-          "Preheat oven to 350F (180C) and grease two 9 (23cm) cake pans. Beat oil and sugars together in a large bowl until combined. Add eggs, one at a time, beating well after each addition. Next, combine flour, cinnamon, baking soda, baking powder and salt.",
-        CategoryId: 1,
-        status: "unavailable",
+        review: "lumayan worth it untuk di beli, kurang lengkapp huhu",
+        nama: "Serena Woods",
+        UserId: "1",
       };
 
       const response = await request(app)
-        .post("/recipe")
+        .post("/add-feedback")
         .set("Authorization", `Bearer ${token}`)
         .send(data);
       expect(response.status).toBe(201);
-      //   console.log(response.status, "res nie");
+      // console.log(response.status, "res nie");
       expect(response.body).toHaveProperty("id");
-      expect(response.body).toHaveProperty("title");
-      expect(response.body).toHaveProperty("image");
-      expect(response.body).toHaveProperty("ingredients");
-      expect(response.body).toHaveProperty("CategoryId");
-      expect(response.body).toHaveProperty("status");
+      expect(response.body).toHaveProperty("review");
+      expect(response.body).toHaveProperty("nama");
+      expect(response.body).toHaveProperty("UserId");
     } catch (error) {
       console.log(error);
       throw error;
@@ -69,17 +62,12 @@ describe("POST /recipe", () => {
   test("Gagal menjalankan fitur karena belum login", async () => {
     try {
       const data = {
-        title: "Fall Classic: Carrot Cake",
-        image: "https://spoonacular.com/recipeImages/642551-556x370.jpg",
-        ingredients:
-          "cooking oil, baking powder, baking soda, cinnamon, all purpose flour, carrot, salt, egg, cream cheese, butter, cream, icing, powdered sugar, vanilla, milk, spread",
-        instruction:
-          "Preheat oven to 350F (180C) and grease two 9 (23cm) cake pans. Beat oil and sugars together in a large bowl until combined. Add eggs, one at a time, beating well after each addition. Next, combine flour, cinnamon, baking soda, baking powder and salt.",
-        CategoryId: 1,
-        status: "unavailable",
+        review: "lumayan worth it untuk di beli, kurang lengkapp huhu",
+        nama: "Serena Woods",
+        UserId: "1",
       };
 
-      const response = await request(app).post("/recipe").send(data);
+      const response = await request(app).post("/add-feedback").send(data);
 
       expect(response.status).toBe(401);
     } catch (error) {
@@ -91,18 +79,13 @@ describe("POST /recipe", () => {
   test("Gagal menjalankan fitur karena token yang diberikan tidak valid", async () => {
     try {
       const data = {
-        title: "Fall Classic: Carrot Cake",
-        image: "https://spoonacular.com/recipeImages/642551-556x370.jpg",
-        ingredients:
-          "cooking oil, baking powder, baking soda, cinnamon, all purpose flour, carrot, salt, egg, cream cheese, butter, cream, icing, powdered sugar, vanilla, milk, spread",
-        instruction:
-          "Preheat oven to 350F (180C) and grease two 9 (23cm) cake pans. Beat oil and sugars together in a large bowl until combined. Add eggs, one at a time, beating well after each addition. Next, combine flour, cinnamon, baking soda, baking powder and salt.",
-        CategoryId: 1,
-        status: "unavailable",
+        review: "lumayan worth it untuk di beli, kurang lengkapp huhu",
+        nama: "Serena Woods",
+        UserId: "1",
       };
 
       const response = await request(app)
-        .post("/recipe")
+        .post("/add-feedback")
         .set("Authorization", "Bearer invalidToken")
         .send(data);
 
@@ -115,15 +98,19 @@ describe("POST /recipe", () => {
 
   test("Gagal ketika request body tidak sesuai (validation required)", async () => {
     try {
-      const data = {};
+      const data = {
+        review: "lumayan worth it untuk di beli, kurang lengkapp huhu",
+        nama: "Serena Woods",
+        UserId: "1",
+      };
 
       const response = await request(app)
-        .post("/recipe")
+        .post("/add-feedback")
         .set("Authorization", `Bearer ${token}`)
         .send(data);
 
       expect(response.status).toBe(400);
-      expect(response.body).toHaveProperty("message", "Title is required");
+      expect(response.body).toHaveProperty("message", "Review is required");
     } catch (error) {
       console.log(error);
       throw error;
