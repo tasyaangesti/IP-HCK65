@@ -1,37 +1,20 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Footer } from "./Footer";
+import { useDispatch, useSelector } from "react-redux";
+import { getPopular } from "../features/action";
 
 export function Popular() {
-  const [popularCard, setPopularCard] = useState([]);
   const navigate = useNavigate();
+  const recipes = useSelector((state) => state.recipes.recipes);
 
-  // console.log(popularCard, ">> card");
+  const dispatch = useDispatch();
 
-  const getPopular = async () => {
-    try {
-      // const response = await axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.API_SPOONCULAR}&number=9`);
-      // const response = await axios({
-      //   method: "get",
-      //   url: 'https://api.spoonacular.com/recipes/random?apiKey=04d05c33b034480e9e33bab2ce4ed012&number=9',
-      // });
-
-      const response = await axios.get("http://localhost:3001/recipe", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-        },
-      });
-
-      // console.log(response.data, ">> response dari card");
-      setPopularCard(response.data);
-    } catch (error) {
-      console.log(error, "error di card");
-    }
-  };
+  console.log(recipes, "redux card");
 
   useEffect(() => {
-    getPopular();
+    dispatch(getPopular());
   }, []);
 
   // console.log(popularCard);
@@ -82,7 +65,7 @@ export function Popular() {
       <p className="text-center"> all recipes only Rp. 30.000/recipe</p>
       <div className="container mx-auto my-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {popularCard.map((recipe) => (
+          {recipes.map((recipe) => (
             <div
               key={recipe.id}
               className="card card-compact bg-base-100 shadow-xl mb-8 mx-2 sm:mx-4 md:mx-2 lg:mx-2"
@@ -104,12 +87,14 @@ export function Popular() {
                     onClick={() => {
                       if (recipe.status === "unavailable") {
                         payment(recipe.id);
-                      } else{
-                        navigate(`/recipe/${recipe.id}`)
+                      } else {
+                        navigate(`/recipe/${recipe.id}`);
                       }
                     }}
                   >
-                   {recipe.status === "unavailable"?`${recipe.status} - Buy Recipe Now`: 'view detail'} 
+                    {recipe.status === "unavailable"
+                      ? `${recipe.status} - Buy Recipe Now`
+                      : "view detail"}
                   </button>
                 </div>
               </div>

@@ -71,74 +71,86 @@ export function Login() {
 
   return (
     <>
-      <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-lg">
-          <h1 className="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">
-            Welcome Back
-          </h1>
-          <form
-            action=""
-            onSubmit={handleSubmit}
-            className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
-          >
-            <p className="text-center text-lg font-medium">
-              Sign in to your account
-            </p>
-            <div>
-              <label htmlFor="email" className="sr-only">
-                Email
-              </label>
-              <div className="relative">
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formLogin.email}
-                  onChange={handleChange}
-                  className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                  placeholder="Enter email"
-                />
-              </div>
-            </div>
-            <div>
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
-              <div className="relative">
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  value={formLogin.password}
-                  onChange={handleChange}
-                  className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                  placeholder="Enter password"
-                />
-              </div>
-            </div>
-            <button
-              type="submit"
-              className="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
+      <div
+        className="h-screen"
+        style={{
+          backgroundImage:
+            'url("https://images.unsplash.com/photo-1505935428862-770b6f24f629?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8N3w0Njc0NjQ5fHxlbnwwfHx8fHw%3D")',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          position: "relative",
+        }}
+      >
+        <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-lg">
+            <h1 className="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">
+              Welcome Back
+            </h1>
+            <form
+              action=""
+              onSubmit={handleSubmit}
+              className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
             >
-              Sign in
-            </button>
-            <div id="buttonDiv"></div>
-            <div
-              className="g_id_signin"
-              data-type="standard"
-              data-size="large"
-              data-theme="outline"
-              data-text="sign_in_with"
-              data-shape="rectangular"
-              data-logo_alignment="left"
-            ></div>
-            <p className="text-center text-sm text-gray-500">
-              don't have an account?
-              <Link className="underline" to="/register">
-                Register
-              </Link>
-            </p>
-          </form>
+              <p className="text-center text-lg font-medium">
+                Sign in to your account
+              </p>
+              <div>
+                <label htmlFor="email" className="sr-only">
+                  Email
+                </label>
+                <div className="relative">
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formLogin.email}
+                    onChange={handleChange}
+                    className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                    placeholder="Enter email"
+                  />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="password" className="sr-only">
+                  Password
+                </label>
+                <div className="relative">
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={formLogin.password}
+                    onChange={handleChange}
+                    className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                    placeholder="Enter password"
+                  />
+                </div>
+              </div>
+              <button
+                type="submit"
+                className="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
+              >
+                Sign in
+              </button>
+              <div id="buttonDiv"></div>
+              <div
+                className="g_id_signin"
+                data-type="standard"
+                data-size="large"
+                data-theme="outline"
+                data-text="sign_in_with"
+                data-shape="rectangular"
+                data-logo_alignment="left"
+              ></div>
+              <p className="text-center text-sm text-gray-500">
+                don't have an account?
+                <Link className="underline" to="/register">
+                  Register
+                </Link>
+              </p>
+            </form>
+          </div>
         </div>
       </div>
     </>

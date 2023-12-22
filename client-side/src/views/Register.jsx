@@ -38,6 +38,15 @@ export function Register() {
 
   return (
     <>
+    <div className="h-screen"
+        style={{
+          backgroundImage: 'url("https://images.unsplash.com/photo-1505935428862-770b6f24f629?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8N3w0Njc0NjQ5fHxlbnwwfHx8fHw%3D")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          position: 'relative',
+        }}
+      >
        <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-lg">
           <h1 className="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">
@@ -133,6 +142,7 @@ export function Register() {
               </Link>
             </p>
           </form>
+        </div>
         </div>
       </div>
     </>
