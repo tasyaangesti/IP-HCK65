@@ -98,11 +98,9 @@ describe("POST /add-feedback", () => {
 
   test("Gagal ketika request body tidak sesuai (validation required)", async () => {
     try {
-      const data = {
-        review: "lumayan worth it untuk di beli, kurang lengkapp huhu",
-        nama: "Serena Woods",
-        UserId: "1",
-      };
+      const data = {reviews: "lumayan worth it untuk di beli, kurang lengkapp huhu",
+      nama: "Serena Woods",
+      UserId: "1",};
 
       const response = await request(app)
         .post("/add-feedback")
@@ -110,7 +108,7 @@ describe("POST /add-feedback", () => {
         .send(data);
 
       expect(response.status).toBe(400);
-      expect(response.body).toHaveProperty("message", "Review is required");
+      expect(response.body).toHaveProperty("message", "Title is required");
     } catch (error) {
       console.log(error);
       throw error;

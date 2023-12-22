@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1703238926721" clover="3.2.0">
-  <project timestamp="1703238926721" name="All files">
-    <metrics statements="232" coveredstatements="161" conditionals="42" coveredconditionals="24" methods="35" coveredmethods="26" elements="309" coveredelements="211" complexity="0" loc="232" ncloc="232" packages="5" files="12" classes="12"/>
+<coverage generated="1703239154236" clover="3.2.0">
+  <project timestamp="1703239154236" name="All files">
+    <metrics statements="232" coveredstatements="163" conditionals="42" coveredconditionals="24" methods="35" coveredmethods="26" elements="309" coveredelements="213" complexity="0" loc="232" ncloc="232" packages="5" files="12" classes="12"/>
     <package name="server-side">
       <metrics statements="24" coveredstatements="24" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
       <file name="app.js" path="C:\Users\Tasya\personal\Downloads\Hacktiv8\phase2\week3\day1\IP-HCK65\server-side\app.js">
@@ -33,9 +33,9 @@
       </file>
     </package>
     <package name="server-side.controllers">
-      <metrics statements="106" coveredstatements="46" conditionals="18" coveredconditionals="9" methods="12" coveredmethods="6"/>
+      <metrics statements="106" coveredstatements="48" conditionals="18" coveredconditionals="9" methods="12" coveredmethods="6"/>
       <file name="controller.js" path="C:\Users\Tasya\personal\Downloads\Hacktiv8\phase2\week3\day1\IP-HCK65\server-side\controllers\controller.js">
-        <metrics statements="106" coveredstatements="46" conditionals="18" coveredconditionals="9" methods="12" coveredmethods="6"/>
+        <metrics statements="106" coveredstatements="48" conditionals="18" coveredconditionals="9" methods="12" coveredmethods="6"/>
         <line num="1" count="7" type="stmt"/>
         <line num="2" count="7" type="stmt"/>
         <line num="3" count="7" type="stmt"/>
@@ -86,9 +86,9 @@
         <line num="125" count="2" type="stmt"/>
         <line num="126" count="2" type="stmt"/>
         <line num="128" count="2" type="stmt"/>
-        <line num="133" count="2" type="stmt"/>
-        <line num="135" count="0" type="stmt"/>
-        <line num="137" count="0" type="stmt"/>
+        <line num="133" count="1" type="stmt"/>
+        <line num="135" count="1" type="stmt"/>
+        <line num="137" count="1" type="stmt"/>
         <line num="142" count="0" type="stmt"/>
         <line num="143" count="0" type="stmt"/>
         <line num="144" count="0" type="stmt"/>
