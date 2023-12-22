@@ -1,6 +1,6 @@
 const app = require("../app");
 const request = require("supertest");
-const { User, Article, sequelize } = require("../models");
+const { User, Feedback, sequelize } = require("../models");
 const { signToken } = require("../helpers/jwt");
 const { queryInterface } = sequelize;
 
@@ -18,7 +18,7 @@ beforeAll(async () => {
 
     token_user = signToken({ id: user.id });
 
-    const feedback = await Article.create({
+    const feedback = await Feedback.create({
       review: "lumayan worth it untuk di beli, kurang lengkapp huhu",
       nama: "Serena Woods",
       UserId: "1",
