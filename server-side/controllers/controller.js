@@ -8,7 +8,7 @@ const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client();
 
 class Controller {
-  static async Register(req, res) {
+  static async Register(req, res, next) {
     try {
       const { fullName, email, password } = req.body;
 
@@ -16,18 +16,19 @@ class Controller {
       res.status(201).json({ id: newUser.id, email: newUser.email });
     } catch (error) {
       console.log(error);
-      if (
-        error.name === "SequelizeUniqueConstraintError" ||
-        error.name === "SequelizeValidationError"
-      ) {
-        res.status(400).json({ message: error.errors[0].message });
-      } else {
-        res.status(500).json({ message: "Internal Server Error" });
-      }
+      // if (
+      //   error.name === "SequelizeUniqueConstraintError" ||
+      //   error.name === "SequelizeValidationError"
+      // ) {
+      //   res.status(400).json({ message: error.errors[0].message });
+      // } else {
+      //   res.status(500).json({ message: "Internal Server Error" });
+      // }
+      next();
     }
   }
 
-  static async Login(req, res) {
+  static async Login(req, res, next) {
     try {
       const { fullName, email, password } = req.body;
 
@@ -53,15 +54,16 @@ class Controller {
       res.status(200).json({ access_token });
     } catch (error) {
       console.log(error);
-      if (error.hasOwnProperty("code")) {
-        res.status(error.code).json({ message: error.message });
-      } else {
-        res.status(500).json({ message: " Internal Server Error" });
-      }
+      // if (error.hasOwnProperty("code")) {
+      //   res.status(error.code).json({ message: error.message });
+      // } else {
+      //   res.status(500).json({ message: " Internal Server Error" });
+      // }
+      next();
     }
   }
 
-  // static async spooncularGetPopular(req, res) {
+  // static async spooncularGetPopular(req, res, next) {
   //   try {
   //     const { data } = await axios({
   //       method: "get",
@@ -75,7 +77,7 @@ class Controller {
   //   }
   // }
 
-  static async findRecipe(req, res) {
+  static async findRecipe(req, res, next) {
     try {
       const recipes = await Recipe.findAll();
       console.log(recipes, ">>rec");
@@ -83,11 +85,12 @@ class Controller {
       res.status(200).json(recipes);
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: "Internal Server Error" });
+      // res.status(500).json({ message: "Internal Server Error" });
+      next();
     }
   }
 
-  static async findRecipeById(req, res) {
+  static async findRecipeById(req, res, next) {
     try {
       console.log(+req.params.id, ">>id ");
       const recipe = await Recipe.findByPk(+req.params.id);
@@ -98,15 +101,16 @@ class Controller {
       res.status(200).json(recipe);
     } catch (error) {
       console.log(error);
-      if (error.hasOwnProperty("code")) {
-        res.status(error.code).json({ message: error.message });
-      } else {
-        res.status(500).json({ message: " Internal Server Error" });
-      }
+      // if (error.hasOwnProperty("code")) {
+      //   res.status(error.code).json({ message: error.message });
+      // } else {
+      //   res.status(500).json({ message: " Internal Server Error" });
+      // }
+      next();
     }
   }
 
-  static async getFeedback(req, res) {
+  static async getFeedback(req, res, next) {
     try {
       const feedback = await Feedback.findAll();
 
@@ -116,7 +120,7 @@ class Controller {
     }
   }
 
-  static async postFeedback(req, res) {
+  static async postFeedback(req, res, next) {
     try {
       const { review, nama, UserId } = req.body;
 
@@ -128,11 +132,12 @@ class Controller {
       res.status(201).json(createFeedback);
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: " Internal Server Error" });
+      // res.status(500).json({ message: " Internal Server Error" });
+      next();
     }
   }
 
-  static async buyRecipe(req, res) {
+  static async buyRecipe(req, res, next) {
     try {
       console.log(req.user.id);
       let user = await User.findByPk(req.user.id);
@@ -159,11 +164,12 @@ class Controller {
       res.status(201).json(midtransToken);
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: " Internal Server Error" });
+      // res.status(500).json({ message: " Internal Server Error" });
+      next();
     }
   }
 
-  static async editReview(req, res) {
+  static async editReview(req, res, next) {
     try {
       const { review, nama, UserId } = req.body;
       let findFeedback = await Feedback.findByPk(req.params.id);
@@ -181,20 +187,21 @@ class Controller {
         message: `feedback has been updated`,
       });
     } catch (error) {
-      if (error.name === "Not Found") {
-        return res.status(404).json({ message: "not found" });
-      }
-      if (error.name === "SequelizeValidationError") {
-        return res.status(400).json({ message: error.errors[0].message });
-      }
-      console.log(error);
-      res.status(500).json({
-        message: "internal server error",
-      });
+      // if (error.name === "Not Found") {
+      //   return res.status(404).json({ message: "not found" });
+      // }
+      // if (error.name === "SequelizeValidationError") {
+      //   return res.status(400).json({ message: error.errors[0].message });
+      // }
+      // console.log(error);
+      // res.status(500).json({
+      //   message: "internal server error",
+      // });
+      next();
     }
   }
 
-  static async putStatus(req, res) {
+  static async putStatus(req, res, next) {
     try {
       let findStatus = await Recipe.findByPk(req.params.id);
       if (!findStatus) {
@@ -212,13 +219,14 @@ class Controller {
       });
     } catch (error) {
       console.log(error);
-      res.status(500).json({
-        message: "internal server error",
-      });
+      // res.status(500).json({
+      //   message: "internal server error",
+      // });
+      next();
     }
   }
 
-  static async getFeedbackById(req, res) {
+  static async getFeedbackById(req, res, next) {
     try {
       const feedback = await Feedback.findByPk(req.params.id);
 
@@ -229,11 +237,12 @@ class Controller {
       return res.status(200).json(feedback);
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ message: "Internal Server Error" });
+      // return res.status(500).json({ message: "Internal Server Error" });
+      next();
     }
   }
 
-  static async deleteFeedback(req, res) {
+  static async deleteFeedback(req, res, next) {
     try {
       const { id } = req.params;
 
@@ -241,11 +250,12 @@ class Controller {
       res.status(200).json({ message: "Success Delete" });
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: " Internal Server Error" });
+      // res.status(500).json({ message: " Internal Server Error" });
+      next();
     }
   }
 
-  static async loginGoogle(req, res) {
+  static async loginGoogle(req, res, next) {
     try {
       console.log(req.headers.google_token, "google server");
       const ticket = await client.verifyIdToken({
@@ -271,9 +281,10 @@ class Controller {
       res.status(200).json({ access_token });
     } catch (error) {
       console.log(error);
-      res.status(500).json({
-        message: "internal server error",
-      });
+      // res.status(500).json({
+      //   message: "internal server error",
+      // });
+      next();
     }
   }
 }

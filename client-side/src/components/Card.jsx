@@ -11,7 +11,7 @@ export function Popular() {
 
   const dispatch = useDispatch();
 
-  console.log(recipes, "redux card");
+  // console.log(recipes, "redux card");
 
   useEffect(() => {
     dispatch(getPopular());
