@@ -1,13 +1,14 @@
-const cors = require("cors");
+
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
-const port = process.env.PORT || 3001;
+// const port = process.env.PORT || 3001;
 const express = require("express");
 const Controller = require("./controllers/controller");
 const authentication = require("./middlewares/authentication");
+const cors = require('cors')
 
 const app = express();
 
